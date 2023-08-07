@@ -48,6 +48,9 @@ console.log(
 function App() {
   const appContext = useAppContext();
   const [currentTheme] = useState(THEME.LIGHT);
+  const currKey = `${appContext.selectedLanguage.id}_${
+    appContext.selectedSnippet?.id ?? ""
+  }`;
 
   const antConfig: ThemeConfig = useMemo(
     () => ({
@@ -82,8 +85,8 @@ function App() {
       <ConfigProvider theme={antConfig}>
         <div className="app">
           <LanguagesContainer />
-          <SnippetsContainer />
-          <CodeSnippetContainer />
+          <SnippetsContainer key={`${currKey}_snippet`} />
+          <CodeSnippetContainer key={`${currKey}_code`} />
         </div>
       </ConfigProvider>
       {appContext.antdContextHolder}

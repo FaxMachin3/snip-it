@@ -124,7 +124,6 @@ const CodeSnippetContainer: React.FC<CodeSnippetContainerProps> = () => {
   return (
     <div className="code-snippet-container">
       <Form
-        key={appContext.selectedSnippet?.id + "code"}
         className="form-container"
         name="code-snippet"
         layout="vertical"
