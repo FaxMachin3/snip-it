@@ -40,15 +40,18 @@ const CodeSnippetContainer: React.FC<CodeSnippetContainerProps> = () => {
     setSnippetData((prevData) => ({
       ...prevData,
       title: {
-        ...prevData.title,
+        value: appContext.selectedSnippet?.title ?? "",
         isDisabled: isViewMode,
       },
       description: {
-        ...prevData.description,
+        value: appContext.selectedSnippet?.description ?? "",
         isDisabled: isViewMode,
       },
       code: {
-        ...prevData.code,
+        value:
+          appContext.selectedSnippet?.code ??
+          appContext.selectedLanguage.defaultCode ??
+          "",
         isDisabled: isViewMode,
       },
     }));
@@ -121,6 +124,7 @@ const CodeSnippetContainer: React.FC<CodeSnippetContainerProps> = () => {
   return (
     <div className="code-snippet-container">
       <Form
+        key={appContext.selectedSnippet?.id + "code"}
         className="form-container"
         name="code-snippet"
         layout="vertical"

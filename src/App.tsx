@@ -82,20 +82,8 @@ function App() {
       <ConfigProvider theme={antConfig}>
         <div className="app">
           <LanguagesContainer />
-          <SnippetsContainer
-            key={
-              appContext.selectedLanguage.id +
-              (appContext.selectedSnippet?.id ?? "") +
-              "snippet"
-            }
-          />
-          <CodeSnippetContainer
-            key={
-              appContext.selectedLanguage.id +
-              (appContext.selectedSnippet?.id ?? "") +
-              "code"
-            }
-          />
+          <SnippetsContainer />
+          <CodeSnippetContainer />
         </div>
       </ConfigProvider>
       {appContext.antdContextHolder}

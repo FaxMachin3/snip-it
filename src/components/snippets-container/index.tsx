@@ -92,6 +92,7 @@ const SnippetsContainer: React.FC<SnippetsContainerProps> = () => {
       </Card>
       {!hasNoSnippet ? (
         <Menu
+          key={appContext.selectedSnippet?.id + "snippet"}
           defaultSelectedKeys={[
             appContext.selectedSnippet?.id ?? (menuItems[0]?.key as string),
           ]}

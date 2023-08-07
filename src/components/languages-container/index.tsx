@@ -1,19 +1,18 @@
 import { useContext, useMemo } from "react";
+import { Menu } from "antd";
 import "./styles.scss";
 
 import { AppContext } from "@/hooks/useAppContext";
-
-import { Menu } from "antd";
-import { CodeOutlined } from "@ant-design/icons";
 import { getItem } from "@/utils";
 import { MenuItem } from "@/types";
+import { ICONS } from "@/constants";
 
 const LanguagesContainer = () => {
   const appContext = useContext(AppContext);
   const menuItems: MenuItem[] = useMemo(
     () =>
-      appContext.languages.map(({ id, language }) =>
-        getItem(language, id, <CodeOutlined />)
+      appContext.languages.map(({ id, language }, index) =>
+        getItem(language, id, ICONS[index].icon)
       ),
     []
   );
