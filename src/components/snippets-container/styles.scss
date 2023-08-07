@@ -1,0 +1,73 @@
+.snippets-container {
+    border-inline-end: 1px solid #6961ff1a;
+    overflow: hidden;
+
+    .top {
+        margin: .4rem;
+
+        .ant-card-body {
+            padding: 0;
+
+        }
+
+        .new-snippet {
+            width: calc(100% - .8rem);
+            margin: .4rem;
+        }
+
+        .search {
+            width: calc(100% - .8rem);
+            margin: .4rem;
+        }
+
+    }
+
+    .no-snippet {
+        margin-top: 4rem;
+        flex: 1 1 auto;
+    }
+
+    ul {
+        height: calc(100% - 90px);
+        overflow-y: auto;
+        border: none !important;
+
+        li {
+            height: initial !important;
+        }
+
+        .snippet {
+            padding-block: .5rem;
+            display: flex;
+            justify-content: space-between;
+
+            .left {
+                max-width: 125px;
+
+                .title,
+                .description {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 2rem;
+                }
+
+                .description {
+                    font-size: .9rem;
+                    opacity: .7;
+                }
+            }
+
+            .right {
+                flex-basis: 40px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+
+            }
+        }
+    }
+}
