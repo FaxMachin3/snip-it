@@ -4,49 +4,18 @@ import "./App.scss";
 import { ConfigProvider, theme } from "antd";
 import { ThemeConfig } from "antd/es/config-provider/context";
 
-import { loader } from "@monaco-editor/react";
-import * as monaco from "monaco-editor";
-import editorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
-import jsonWorker from "monaco-editor/esm/vs/language/json/json.worker?worker";
-import cssWorker from "monaco-editor/esm/vs/language/css/css.worker?worker";
-import htmlWorker from "monaco-editor/esm/vs/language/html/html.worker?worker";
-import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
-
 import LanguagesContainer from "./components/languages-container";
 import SnippetsContainer from "./components/snippets-container";
 import { AppContext, useAppContext } from "./hooks/useAppContext";
-import { THEME } from "./types";
+import { APP_REDUCER, THEME } from "./types";
 import CodeSnippetContainer from "./components/code-snippet-container";
 
-self.MonacoEnvironment = {
-  getWorker(_, label) {
-    if (label === "json") {
-      return new jsonWorker();
-    }
-    if (label === "css" || label === "scss" || label === "less") {
-      return new cssWorker();
-    }
-    if (label === "html" || label === "handlebars" || label === "razor") {
-      return new htmlWorker();
-    }
-    if (label === "typescript" || label === "javascript") {
-      return new tsWorker();
-    }
-    return new editorWorker();
-  },
-};
+interface AppProps {
+  jsonStore: APP_REDUCER;
+}
 
-loader.config({ monaco });
-
-loader.init().then(() => console.log("loader initiated"));
-
-console.log(
-  "[App.tsx]",
-  `Hello world from Electron ${process.versions.electron}!`
-);
-
-function App() {
-  const appContext = useAppContext();
+const App: React.FC<AppProps> = ({ jsonStore }) => {
+  const appContext = useAppContext(jsonStore);
   const [currentTheme] = useState(THEME.LIGHT);
   const currKey = `${appContext.selectedLanguage.id}_${
     appContext.selectedSnippet?.id ?? ""
@@ -92,6 +61,6 @@ function App() {
       {appContext.antdContextHolder}
     </AppContext.Provider>
   );
-}
+};
 
 export default App;

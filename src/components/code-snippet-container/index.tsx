@@ -122,7 +122,7 @@ const CodeSnippetContainer: React.FC<CodeSnippetContainerProps> = () => {
   };
 
   return (
-    <div className="code-snippet-container">
+    <main className="code-snippet-container">
       <Form
         className="form-container"
         name="code-snippet"
@@ -168,7 +168,7 @@ const CodeSnippetContainer: React.FC<CodeSnippetContainerProps> = () => {
           {isViewMode ? "Edit" : isModifyMode ? "Save" : "Add"}
         </Button>
       </Form>
-    </div>
+    </main>
   );
 };
 

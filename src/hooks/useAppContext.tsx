@@ -1,4 +1,5 @@
 import { useReducer, useMemo, createContext, useEffect } from "react";
+import { ipcRenderer } from "electron";
 
 import { message } from "antd";
 import { languages } from "@/constants";
@@ -103,7 +104,7 @@ const appReducer = (state: APP_REDUCER, action: ACTIONS) => {
   }
 };
 
-const initialState: APP_REDUCER = {
+export const initialState: APP_REDUCER = {
   languages,
   selectedLanguage: languages[0],
   selectedSnippet: languages[0].snippets[0] ?? null,
@@ -122,10 +123,10 @@ export const AppContext = createContext<APP_CONTEXT>({
   changeCrudMode: () => {},
 });
 
-export const useAppContext = () => {
+export const useAppContext = (jsonStore: APP_REDUCER) => {
   const [appState, dispatch] = useReducer(
     appReducer,
-    JSON.parse(localStorage.getItem("appState") ?? "null") ?? initialState
+    jsonStore ?? initialState
   );
   const [antdMessageApi, antdContextHolder] = message.useMessage();
 
@@ -162,7 +163,10 @@ export const useAppContext = () => {
   ]);
 
   useEffect(() => {
-    localStorage.setItem("appState", JSON.stringify(appState));
+    ipcRenderer
+      .invoke("set-store", JSON.stringify(appState))
+      .then(() => console.log("store updated"))
+      .catch(console.error); // TODO: decide what to do here
   }, [appState]);
 
   return appContext;

@@ -43,7 +43,7 @@ const indexHtml = join(process.env.DIST, 'index.html')
 
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
+    title: 'Snip It',
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {
       preload,

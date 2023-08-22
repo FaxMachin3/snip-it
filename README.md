@@ -11,7 +11,7 @@
 3. **Ant Design** system to speed up UI components.
 4. **nanoid** to generate ids on fly.
 
-## Component Architechture [TBD]
+## Component Architecture [TBD]
 
 ## API/ Data Modeling/ Communication Protocols [TBD]
 
@@ -29,4 +29,7 @@ npm install
 
 # develop
 npm run dev
+
+# build
+npm run build
 ```
